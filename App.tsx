@@ -1,16 +1,25 @@
 import {
-  View,
   Text,
   Image,
   TouchableOpacity,
   Alert,
   Pressable,
+  SafeAreaView,
 } from 'react-native';
 
 const App = () => {
+  const style = {
+    container: {
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'black',
+    },
+  };
   return (
-    <View>
-      <Text>App</Text>
+    <SafeAreaView style={style.container}>
+      <Text style={{ color: 'white', fontSize: 20, fontWeight: '700' }}>
+        App
+      </Text>
       <Image
         style={{ width: 400, height: 300 }}
         source={{
@@ -29,7 +38,7 @@ const App = () => {
       >
         <Text>Press Me!</Text>
       </Pressable>
-    </View>
+    </SafeAreaView>
   );
 };
 
