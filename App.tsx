@@ -8,18 +8,9 @@ import {
 } from 'react-native';
 
 const App = () => {
-  const style = {
-    container: {
-      width: '100%',
-      height: '100%',
-      backgroundColor: 'black',
-    },
-  };
   return (
-    <SafeAreaView style={style.container}>
-      <Text style={{ color: 'white', fontSize: 20, fontWeight: '700' }}>
-        App
-      </Text>
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.text}>App</Text>
       <Image
         style={{ width: 400, height: 300 }}
         source={{
@@ -27,10 +18,10 @@ const App = () => {
         }}
       />
       <TouchableOpacity
-        style={{ padding: 10, backgroundColor: 'green' }}
+        style={styles.button}
         onPress={() => Alert.alert('Pressed!!')}
       >
-        <Text>Button</Text>
+        <Text style={styles.btnText}>Button</Text>
       </TouchableOpacity>
       <Pressable
         style={{ padding: 10, backgroundColor: 'yellow' }}
@@ -43,3 +34,24 @@ const App = () => {
 };
 
 export default App;
+
+const styles = {
+  container: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'black',
+  },
+  text: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: '700',
+  },
+  button: {
+    padding: 10,
+    backgroundColor: '#666',
+  },
+  btnText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+};
