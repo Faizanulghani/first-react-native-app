@@ -1,35 +1,21 @@
-import {
-  Text,
-  Image,
-  TouchableOpacity,
-  Alert,
-  Pressable,
-  SafeAreaView,
-} from 'react-native';
+import { View, SafeAreaView, ScrollView } from 'react-native';
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>App</Text>
-      <Image
-        style={{ width: 400, height: 300 }}
-        source={{
-          uri: 'https://images.unsplash.com/photo-1753808645481-070fba323120?q=80&w=875&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        }}
-      />
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => Alert.alert('Pressed!!')}
-      >
-        <Text style={styles.btnText}>Button</Text>
-      </TouchableOpacity>
-      <Pressable
-        style={{ padding: 10, backgroundColor: 'yellow' }}
-        onLongPress={() => Alert.alert('Hello')}
-      >
-        <Text>Press Me!</Text>
-      </Pressable>
-    </SafeAreaView>
+    <ScrollView
+    contentContainerStyle={{gap:10}}
+    horizontal
+    style={styles.container}>
+      <View style={styles.box1}></View>
+      <View style={styles.box2}></View>
+      <View style={styles.box3}></View>
+      <View style={styles.box1}></View>
+      <View style={styles.box2}></View>
+      <View style={styles.box3}></View>
+      <View style={styles.box1}></View>
+      <View style={styles.box2}></View>
+      <View style={styles.box3}></View>
+    </ScrollView>
   );
 };
 
@@ -37,21 +23,26 @@ export default App;
 
 const styles = {
   container: {
-    width: '100%',
-    height: '100%',
+    flex: 1,
     backgroundColor: 'black',
+    padding:10,
   },
-  text: {
-    color: 'white',
-    fontSize: 20,
-    fontWeight: '700',
+  box1: {
+    width: 100,
+    height: 100,
+    backgroundColor: 'red',
+    borderRadius:50
   },
-  button: {
-    padding: 10,
-    backgroundColor: '#666',
+  box2: {
+    width: 100,
+    height: 100,
+    backgroundColor: 'yellow',
+    borderRadius:50
   },
-  btnText: {
-    color: 'white',
-    fontWeight: 'bold',
+  box3: {
+    width: 100,
+    height: 100,
+    backgroundColor: 'green',
+    borderRadius:50
   },
 };
