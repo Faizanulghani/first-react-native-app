@@ -11,9 +11,15 @@ const Stack = createNativeStackNavigator();
 const App = () => {
   const StackNavigator = () => {
     return (
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{ headerStyle: { backgroundColor: 'yellow' } }}
+      >
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
+          options={{ headerStyle: { backgroundColor: 'red' } }}
+        />
         <Stack.Screen name="About" component={About} />
       </Stack.Navigator>
     );
