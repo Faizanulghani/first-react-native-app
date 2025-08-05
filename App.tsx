@@ -5,14 +5,13 @@ import Create from './src/screens/Create';
 
 const App = () => {
   let [view, setView] = useState(0);
-
-  let data = [
+  let [data, setData] = useState([
     { id: 1, name: 'Wheat', stock: 5, unit: 'kg' },
     { id: 2, name: 'Rice', stock: 15, unit: 'kg' },
     { id: 3, name: 'Sugar', stock: 25, unit: 'kg' },
     { id: 4, name: 'Salt', stock: 50, unit: 'kg' },
     { id: 5, name: 'Flour', stock: 19, unit: 'kg' },
-  ];
+  ]);
 
   return (
     <View style={styles.container}>
@@ -55,7 +54,7 @@ const App = () => {
 
       {view === 0 && <AllItems data={data} />}
       {view === 1 && <AllItems data={data.filter(item => item.stock < 20)} />}
-      {view === 2 && <Create />}
+      {view === 2 && <Create data={data} setData={setData} />}
     </View>
   );
 };
