@@ -1,13 +1,55 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 
-const AllItems = () => {
+const AllItems = ({ data }) => {
   return (
     <View>
-      <Text>AllItems</Text>
+      <View style={styles.headingContainer}>
+        <Text style={styles.headingText}>Items</Text>
+        <Text style={styles.headingText}>Quantity</Text>
+      </View>
+
+      <FlatList
+        data={data}
+        keyExtractor={item => item.id}
+        contentContainerStyle={{ gap: 10 }}
+        renderItem={({ item }) => (
+          <View
+            style={[
+              styles.itemContainer,
+              { backgroundColor: item.stack < 20 ? '#FFCCCC' : '#D7F6BFFF' },
+            ]}
+          >
+            <Text style={styles.itemText}>{item.name}</Text>
+            <Text style={styles.itemText}>{item.stack}</Text>
+          </View>
+        )}
+      />
     </View>
   );
 };
 
 export default AllItems;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  headingContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+  },
+  headingText: {
+    fontWeight: 500,
+    fontSize: 14,
+  },
+  itemContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    borderRadius: 7,
+  },
+  itemText: {
+    fontWeight: '400',
+    fontSize: 15,
+  },
+});

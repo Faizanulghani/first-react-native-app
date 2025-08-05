@@ -5,6 +5,15 @@ import Create from './src/screens/Create';
 
 const App = () => {
   let [view, setView] = useState(0);
+
+  let data = [
+    { id: 1, name: 'Wheat', stack: 5, unit: 'kg' },
+    { id: 2, name: 'Rice', stack: 15, unit: 'kg' },
+    { id: 3, name: 'Sugar', stack: 25, unit: 'kg' },
+    { id: 4, name: 'Salt', stack: 50, unit: 'kg' },
+    { id: 5, name: 'Flour', stack: 19, unit: 'kg' },
+  ];
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Dashboard</Text>
@@ -12,7 +21,7 @@ const App = () => {
         <Pressable
           style={[
             styles.button,
-            view === 0 ? { backgroundColor: 'green' } : null,
+            view === 0 ? { backgroundColor: '#72C37AFF' } : null,
           ]}
           onPress={() => setView(0)}
         >
@@ -23,7 +32,7 @@ const App = () => {
         <Pressable
           style={[
             styles.button,
-            view === 1 ? { backgroundColor: 'green' } : null,
+            view === 1 ? { backgroundColor: '#72C37AFF' } : null,
           ]}
           onPress={() => setView(1)}
         >
@@ -34,7 +43,7 @@ const App = () => {
         <Pressable
           style={[
             styles.button,
-            view === 2 ? { backgroundColor: 'green' } : null,
+            view === 2 ? { backgroundColor: '#72C37AFF' } : null,
           ]}
           onPress={() => setView(2)}
         >
@@ -44,8 +53,8 @@ const App = () => {
         </Pressable>
       </View>
 
-      {view === 0 && <AllItems />}
-      {view === 1 && <AllItems />}
+      {view === 0 && <AllItems data={data} />}
+      {view === 1 && <AllItems data={data.filter(item => item.stack < 20)} />}
       {view === 2 && <Create />}
     </View>
   );
@@ -75,10 +84,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 50,
     borderWidth: 1,
-    borderColor: 'green',
+    borderColor: '#72C37AFF',
   },
   btnText: {
-    color: 'green',
+    color: '#72C37AFF',
     fontSize: 12,
   },
 });
