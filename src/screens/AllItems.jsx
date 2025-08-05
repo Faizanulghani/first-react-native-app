@@ -16,11 +16,11 @@ const AllItems = ({ data }) => {
           <View
             style={[
               styles.itemContainer,
-              { backgroundColor: item.stack < 20 ? '#FFCCCC' : '#D7F6BFFF' },
+              { backgroundColor: item.stock < 20 ? '#FFCCCC' : '#D7F6BFFF' },
             ]}
           >
             <Text style={styles.itemText}>{item.name}</Text>
-            <Text style={styles.itemText}>{item.stack}</Text>
+            <Text style={styles.itemText}>{item.stock}</Text>
           </View>
         )}
       />
