@@ -1,83 +1,84 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
-import Home from './src/screens/Home';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Profile from './src/screens/Profile';
-import About from './src/screens/About';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import AntDesign from 'react-native-vector-icons/dist/AntDesign';
-import EvilIcons from 'react-native-vector-icons/dist/EvilIcons';
-import AntDesign2 from 'react-native-vector-icons/dist/AntDesign';
-
-const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
+import { useState } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import AllItems from './src/screens/AllItems';
+import Create from './src/screens/Create';
 
 const App = () => {
-  const StackNavigator = () => {
-    return (
-      <Stack.Navigator
-        screenOptions={{ headerStyle: { backgroundColor: 'yellow' } }}
-      >
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen
-          name="Profile"
-          component={Profile}
-          options={{ headerStyle: { backgroundColor: 'red' } }}
-        />
-        <Stack.Screen name="About" component={About} />
-      </Stack.Navigator>
-    );
-  };
-
-  function MyTabs() {
-    return (
-      <Tab.Navigator
-        screenOptions={{
-          tabBarActiveTintColor: 'red',
-          tabBarInactiveTintColor: 'black',
-          tabBarLabelStyle: { fontSize: 12 },
-          tabBarStyle: { height: 60 },
-        }}
-      >
-        <Tab.Screen
-          name="Home"
-          component={Home}
-          options={{
-            tabBarIcon: ({ color, size }) => (
-              <AntDesign name="home" size={size} color={color} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Profile"
-          component={Profile}
-          options={{
-            tabBarIcon: ({ color, size }) => (
-              <EvilIcons name="user" size={size} color={color} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="About"
-          component={About}
-          options={{
-            tabBarIcon: ({ color, size }) => (
-              <AntDesign2 name="profile" size={size} color={color} />
-            ),
-          }}
-        />
-      </Tab.Navigator>
-    );
-  }
+  let [view, setView] = useState(0);
   return (
-    <NavigationContainer>
-      {/* <StackNavigator /> */}
-      <MyTabs />
-    </NavigationContainer>
+    <View style={styles.container}>
+      <Text style={styles.title}>Dashboard</Text>
+      <View style={[styles.buttonContainer]}>
+        <Pressable
+          style={[
+            styles.button,
+            view === 0 ? { backgroundColor: 'green' } : null,
+          ]}
+          onPress={() => setView(0)}
+        >
+          <Text style={[styles.btnText, view === 0 ? { color: '#fff' } : null]}>
+            All Items
+          </Text>
+        </Pressable>
+        <Pressable
+          style={[
+            styles.button,
+            view === 1 ? { backgroundColor: 'green' } : null,
+          ]}
+          onPress={() => setView(1)}
+        >
+          <Text style={[styles.btnText, view === 1 ? { color: '#fff' } : null]}>
+            Low Stock
+          </Text>
+        </Pressable>
+        <Pressable
+          style={[
+            styles.button,
+            view === 2 ? { backgroundColor: 'green' } : null,
+          ]}
+          onPress={() => setView(2)}
+        >
+          <Text style={[styles.btnText, view === 2 ? { color: '#fff' } : null]}>
+            Create
+          </Text>
+        </Pressable>
+      </View>
+
+      {view === 0 && <AllItems />}
+      {view === 1 && <AllItems />}
+      {view === 2 && <Create />}
+    </View>
   );
 };
 
 export default App;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    height: '100%',
+    padding: '4%',
+    backgroundColor: '#fff',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    gap: 10,
+    marginVertical: 10,
+  },
+  button: {
+    paddingVertical: 3.5,
+    paddingHorizontal: 10,
+    borderRadius: 50,
+    borderWidth: 1,
+    borderColor: 'green',
+  },
+  btnText: {
+    color: 'green',
+    fontSize: 12,
+  },
+});
